@@ -1,0 +1,34 @@
+
+npm init -y             ## Genera nuestro package.json
+
+## Instalación de librerías a utilizar
+npm install express
+npm install cors
+npm install dotenv
+
+npm install -D typescript ts-node-dev @types/node @types/express @types/cors    ## Instalamos Typescript con los tipados de las librerías ya instaladas.
+
+---------- O ----------
+
+npx tsc --init      ## Genera el archivo de configuración de Typescript.
+
+Configuraciones recomendadas:
+{
+    "compilerOptions": {
+        "target": "ES2020",
+        "module": "CommonJS",
+        "rootDir": "src",
+        "outDir": "dist",
+        "strict": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true
+  }
+}
+
+---------- O ----------
+Actualizamos nuestros scripts a la versión con Typescript:
+"scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+}
