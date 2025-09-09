@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./database";
+import router from "./routes";
 
 dotenv.config();
 connectDB();
@@ -15,6 +16,8 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("Server is ON!");
 });
+
+app.use("/api", router);
 
 // app.listen(3000, () => {
 //   console.log("Server is running on http://localhost:3000");
