@@ -32,7 +32,15 @@ const createPost = async (req: Request, res: Response) => {
 
 const getAllPosts = async (req: Request, res: Response) => {
     try {
-        const posts = await Post.find().populate("author", "username email");
+        const { title } = req.query;
+        let filter = {};
+
+        if (title) {
+            filter = { title: { $regex: title as string, $options: "i" } };
+        }
+
+        const posts = await Post.find(filter).populate("author", "name lastName email");
+        
         res.status(200).json({
             message: "Posts fetched successfully",
             data: posts,

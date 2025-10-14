@@ -1,10 +1,12 @@
 import express from "express";
 
 import controllers from "./controllers";
+import validationMiddleware from "../../middlewares/validator";
+import { createPostValidationSchema } from "./validations";
 
 const router = express.Router();
 
-router.post("/", controllers.createPost);
+router.post("/", validationMiddleware(createPostValidationSchema), controllers.createPost);
 router.get("/", controllers.getAllPosts);
 router.get("/:id", controllers.getPostById);
 router.patch("/:id", controllers.updatePost);
