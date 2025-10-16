@@ -4,6 +4,7 @@ import controllers from "./controllers";
 
 const router = express.Router();
 
-router.post("/", controllers.createUser);
+router.post("/register", controllers.registerUser);
+router.post("/login", controllers.loginWithEmailPassword);
 
 export default router;
